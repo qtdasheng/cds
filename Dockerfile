@@ -5,4 +5,5 @@ ADD . /usr/src/
 VOLUME /usr/src
 WORKDIR /usr/src
 RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple
+CMD chmid -R run.sh
 CMD ./run.sh
