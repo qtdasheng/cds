@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+    用户管理
+{% endblock %}
+
+{% block css %}
+    <script type="text/javascript" src="{% static 'js/custom/forms.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="centercontent tables">
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">当前位置：用户管理</h1>
+            <span class="pagedesc">用于对用户的增删改查功能</span>
+
+        </div><!--pageheader-->
+
+        <div style="margin: 10px">
+            <div class="contenttitle2">
+                <h3>用户角色</h3>
+            </div><!--contenttitle-->
+            <table  class="stdtable">
+                <thead>
+                <tr>
+                    <th class="head0">用户ID</th>
+                    <th class="head1">用户名称</th>
+                    <th class="head0">用户电话</th>
+                    <th class="head1">用户邮箱</th>
+                    <th class="head0">用户地址</th>
+                    <th class="head1">用户头像</th>
+                    <th class="head0">注册日期</th>
+                    <th class="head1">个人介绍</th>
+                    <th class="head0">经验</th>
+                    <th class="head1">等级</th>
+                    <th class="head0" style="width: 100px">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for user in users %}
+                    <tr class="gradeA">
+                        <td>{{ user.uid }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.head }}</td>
+                        <td>{{ user.ucretime }}</td>
+                        <td>{{ user.note }}</td>
+                        <td>{{ user.exp }}</td>
+                        <td>{{ user.level }}</td>
+
+                        <td class="center">
+                            <button class="stdbtn" onclick="edit_({{ user.id }})">编辑</button>
+                            <button class="stdbtn btn_yellow" onclick="delete_({{ user.id }}, '{{ user.name }}')">删除</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <div style="padding: 5px">
+                <button class="stdbtn btn_blue" onclick="window.open('/edit_role/', target='_self')">新增</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -76,24 +76,24 @@ WSGI_APPLICATION = 'chidiansha.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'HOST': '139.129.93.165',
-    #     'PORT':3307,
-    #     'USER': 'root',
-    #     'PASSWORD': 'root',
-    #     'CHARSET': 'utf8',
-    #     'NAME': 'chidiansha'
-    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',
-        'PORT': 3306,
+        'HOST': '139.129.93.165',
+        'PORT':3307,
         'USER': 'root',
-        'PASSWORD': '073434',
+        'PASSWORD': 'root',
         'CHARSET': 'utf8',
         'NAME': 'chidiansha'
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': 3306,
+    #     'USER': 'root',
+    #     'PASSWORD': '073434',
+    #     'CHARSET': 'utf8',
+    #     'NAME': 'chidiansha'
+    # }
 }
 
 # Password validation

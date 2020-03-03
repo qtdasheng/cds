@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+    菜谱管理
+{% endblock %}
+
+{% block css %}
+    <script type="text/javascript" src="{% static 'js/custom/forms.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="centercontent tables">
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">当前位置：菜谱管理</h1>
+            <span class="pagedesc">用于对菜谱信息的增删改查功能</span>
+
+        </div><!--pageheader-->
+
+        <div style="margin: 10px">
+            <div class="contenttitle2">
+                <h3>菜谱详情</h3>
+            </div><!--contenttitle-->
+            <table  class="stdtable">
+                <thead>
+                <tr>
+                    <th class="head0">菜谱ID</th>
+                    <th class="head1">菜谱名称</th>
+                    <th class="head0">菜谱图片</th>
+                    <th class="head1">菜谱简介</th>
+                    <th class="head0">链接地址</th>
+                    <th class="head1">上传时间</th>
+                    <th class="head0">分类</th>
+                    <th class="head1">up主名字</th>
+                    <th class="head0" style="width: 100px">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for caipu in caipus %}
+                    <tr class="gradeA">
+                        <td>{{ caipu.cpid }}</td>
+                        <td>{{ caipu.cp_title }}</td>
+                        <td><img src="{{ caipu.cpimg }}" style="width: 50px" ></td>
+                        <td>{{ caipu.cp_info }}</td>
+                        <td><a href="{{ caipu.cp_url }}">链接地址</a> </td>
+                        <td>{{ caipu.cp_cretime }}</td>
+                        <td>{{ caipu.flid.flname}}</td>
+                        <td>{{ caipu.uid.name }}</td>
+
+                        <td class="center">
+                            <button class="stdbtn" onclick="edit_({{ caipu.cpid }})">编辑</button>
+                            <button class="stdbtn btn_yellow" onclick="delete_({{ caipu.cpid  }}, '{{ caipu.cp_title }}')">删除</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <div style="padding: 5px">
+                <button class="stdbtn btn_blue" onclick="window.open('/edit_role/', target='_self')">新增</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

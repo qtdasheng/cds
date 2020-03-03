@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+    商品管理
+{% endblock %}
+
+{% block css %}
+    <script type="text/javascript" src="{% static 'js/custom/forms.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="centercontent tables">
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">当前位置：商品管理</h1>
+            <span class="pagedesc">用于对商品的增删改查功能</span>
+
+        </div><!--pageheader-->
+
+        <div style="margin: 10px">
+            <div class="contenttitle2">
+                <h3>商品详情</h3>
+            </div><!--contenttitle-->
+            <table  class="stdtable">
+                <thead>
+                <tr>
+                    <th class="head0">商品ID</th>
+                    <th class="head1">商品名称</th>
+                    <th class="head0">商品图片</th>
+                    <th class="head1">商品进价</th>
+                    <th class="head0">商品售价</th>
+                    <th class="head1">商品数量</th>
+                    <th class="head0">进货日期</th>
+                    <th class="head1">供货商</th>
+                    <th class="head0" style="width: 100px">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for good in goods %}
+                    <tr class="gradeA">
+                        <td>{{ good.gid }}</td>
+                        <td>{{ good.gname }}</td>
+                        <td><img src="{{ good.gimg }}" style="width: 50px" ></td>
+                        <td>{{ good.gpreprice }}</td>
+                        <td>{{ good.gprice }}</td>
+                        <td>{{ good.gnum }}</td>
+                        <td>{{ good.gcretime }}</td>
+                        <td>{{ good.vid.vname }}</td>
+
+                        <td class="center">
+                            <button class="stdbtn" onclick="edit_({{ good.gid }})">编辑</button>
+                            <button class="stdbtn btn_yellow" onclick="delete_({{ good.gid }}, '{{ good.gname }}')">删除</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <div style="padding: 5px">
+                <button class="stdbtn btn_blue" onclick="window.open('/edit_role/', target='_self')">新增</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

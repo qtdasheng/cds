@@ -7,7 +7,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 from common import md5_
-from .models import TSysUser, TUser, TSysRole, TMessage
+from .models import TSysUser, TUser, TSysRole, TMessage, TGoods, TCaipu
 
 from chidiansha import settings
 
@@ -68,23 +68,22 @@ def logout(request):
     return redirect('/login/')
 
 
-@csrf_exempt
-def block_settings(request):
-    block_default_size = request.POST.get('block_default_size', settings.DEFAULT_BLOCK_SIZE)
-    friend_block_size = request.POST.get('friend_block_size', settings.FRIEND_BLOCK_SIZE)
+def user(request):
+    users = TUser.objects.all()
 
-    if request.method == 'POST':
-        settings.DEFAULT_BLOCK_SIZE = int(block_default_size)
-        settings.FRIEND_BLOCK_SIZE = int(friend_block_size)
+    return render(request, 'user.html', locals())
 
-    type_ = request.GET.get('type_', '')
-    if type_ == 'ajax':
-        return JsonResponse({
-            'block_default_size': block_default_size,
-            'friend_block_size': friend_block_size
-        })
 
-    return render(request, 'settings.html', locals())
+def goods(request):
+    goods = TGoods.objects.all()
+
+    return render(request, 'good.html', locals())
+
+
+def caipus(request):
+    caipus = TCaipu.objects.all()
+
+    return render(request, 'caipu.html', locals())
 
 
 def index(request):
